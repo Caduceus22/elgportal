@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Вход</h2>
+<form method="post">
+  {% csrf_token %}
+  <h1 class="h3 mb-3 fw-normal">Авторизуйтесь</h1>
+  <div class="form-floating">
+  {{ form.as_p }}
+  </div>
+  <button type="submit">Войти</button>
+</form>
+
+{% endblock content %}

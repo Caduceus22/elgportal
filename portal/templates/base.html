@@ -1,0 +1,63 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>Журнал ТКП</title>
+  </head>
+  <body>
+   <nav class="navbar sticky-top bg-body-tertiary">
+  <form class="container-fluid justify-content-start">
+
+  {% if user.is_authenticated and user.is_staff %}
+    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'home' %}" class="nav-link">Все ТКП</a></button>
+  {% endif %}
+    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'my_list' %}" class="nav-link">Мои ТКП</a></button>
+    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'tkp_add' %}" class="nav-link">+ Добавить новое ТКП</a></button>
+
+
+
+  {% if user.is_authenticated %}
+    <button class="btn btn-sm btn-outline-secondary" type="button">Привет {{ user.username }}!</button>
+    <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url 'logout' %}">Выйти</a></button>
+  {% else %}
+    <button class="btn btn-sm btn-outline-secondary" type="button">Вы не вошли</button>
+    <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url 'login' %}">Войти</a></button>
+  {% endif %}
+  </form>
+     <table class="table text-center">
+  <tr>
+    <th>№ ТКП</th>
+    <th>Менеджер</th>
+    <th>Дата ТКП</th>
+    <th>Организация (Клиент)</th>
+    <th>Сумма ТКП</th>
+    <th>Контактное лицо</th>
+    <th>Телефон конактного лица</th>
+    <th>Населённый пункт</th>
+    <th>Оборудование, предложение</th>
+    <th>Тендер</th>
+    <th>Примечание</th>
+  </tr>
+</table>
+
+
+   </nav>
+
+
+    <div class="container">
+      <div class="table-responsive-xl">
+
+          {% block content %}
+          {% endblock content %}
+
+
+      </div>
+    </div>
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

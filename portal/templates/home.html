@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+
+<table class="table table-hover table-bordered border-success">
+  <tr>
+    <th style="width:10%">№ ТКП</th>
+    <th style="width:10%">Менеджер</th>
+    <th style="width:10%">Дата ТКП</th>
+    <th style="width:10%">Организация (Клиент)</th>
+    <th style="width:10%">Сумма ТКП</th>
+    <th style="width:10%">Контактное лицо</th>
+    <th style="width:10%">Телефон контактного лица</th>
+    <th style="width:10%">Населённый пункт</th>
+    <th style="width:10%">Оборудование, предложение</th>
+    <th style="width:10%">Тендер</th>
+    <th style="width:10%">Примечание</th>
+  </tr>
+  {% for post in all_tkp_list %}
+  <tr class="table table-hover table-bordered">
+    <td class="table table-hover">{{ post.id }}</td>
+    <td class="table table-hover">{{ post.author }}</td>
+    <td class="table table-hover">{{ post.data_create_tkp|date:"SHORT_DATE_FORMAT" }}</td>
+    <td class="table table-hover">{{ post.title }}</td>
+    <td class="table table-hover">{{ post.summa_tkp }}</td>
+    <td class="table table-hover">{{ post.kontakt_tkp }}</td>
+    <td class="table table-hover">{{ post.kontakt_tel }}</td>
+    <td class="table table-hover">{{ post.city_client }}</td>
+    <td class="table table-hover">{{ post.description_tkp }}</td>
+    <td class="table table-hover">{{ post.tender_tkp|yesno:"тендер,нет" }}</td>
+    <td class="table table-hover">{{ post.notes_tkp }}</td>
+  </tr>
+   {% endfor %}
+</table>
+{% endblock content %}

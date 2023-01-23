@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-hover">
+  <tr class="table table-hover">
+      <th class="table table-hover">
+    Организация (Клиент)
+      </th>
+    <td class="table table-hover">
+      № ТКП
+    </td>
+      <td class="table table-hover">
+      Дата ТКП
+    </td>
+    <td class="table table-hover">
+      Последний раз редактировалось
+    </td>
+    <td class="table table-hover">
+      Сумма ТКП
+    </td>
+    <td class="table table-hover">
+      Контактное лицо
+    </td>
+    <td class="table table-hover">
+      Населённый пункт
+    </td>
+    <td class="table table-hover">
+      Оборудование, содержание/предложение
+    </td>
+    <td class="table table-hover">
+      Тендер, да/нет
+    </td>
+    <td class="table table-hover">
+      Примечание
+    </td>
+    <td class="table table-hover">
+      Автор
+    </td>
+  </tr>
+
+  <tr class="table table-hover">
+
+    <th class="table table-hover">
+      {{ tkp_detail.title }}
+    </th>
+    <td class="table table-hover">
+      {{ tkp_detail.id }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.data_create_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.time_update_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.summa_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.kontakt_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.city_client }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.description_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.tender_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.notes_tkp }}
+    </td>
+    <td class="table table-hover">
+      {{ tkp_detail.author }}
+    </td>
+
+  </tr>
+
+</table>
+<p><a href="{% url 'tkp_edit' object.pk %}">+ Редактировать</a></p>
+  <p><a href="{% url 'tkp_delete' object.pk %}">- Удалить ТКП</a></p>
+{% endblock content %}
