@@ -8,56 +8,36 @@
     <title>Журнал ТКП</title>
   </head>
   <body>
-   <nav class="navbar sticky-top bg-body-tertiary">
-  <form class="container-fluid justify-content-start">
-
-  {% if user.is_authenticated and user.is_staff %}
-    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'home' %}" class="nav-link">Все ТКП</a></button>
-  {% endif %}
-    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'my_list' %}" class="nav-link">Мои ТКП</a></button>
-    <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'tkp_add' %}" class="nav-link">+ Добавить новое ТКП</a></button>
-
-
-
-  {% if user.is_authenticated %}
-    <button class="btn btn-sm btn-outline-secondary" type="button">Привет {{ user.username }}!</button>
-    <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url 'logout' %}">Выйти</a></button>
-  {% else %}
-    <button class="btn btn-sm btn-outline-secondary" type="button">Вы не вошли</button>
-    <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url 'login' %}">Войти</a></button>
-  {% endif %}
-  </form>
-     <table class="table text-center">
-  <tr>
-    <th>№ ТКП</th>
-    <th>Менеджер</th>
-    <th>Дата ТКП</th>
-    <th>Организация (Клиент)</th>
-    <th>Сумма ТКП</th>
-    <th>Контактное лицо</th>
-    <th>Телефон конактного лица</th>
-    <th>Населённый пункт</th>
-    <th>Оборудование, предложение</th>
-    <th>Тендер</th>
-    <th>Примечание</th>
-  </tr>
-</table>
-
-
-   </nav>
-
-
-    <div class="container">
-      <div class="table-responsive-xl">
-
+    <header class="navbar">
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'my_list' %}">«Евролюкс» </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+               <form role="search">
+                  {% if user.is_authenticated and user.is_staff %}
+                  <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'home' %}" class="nav-link">Все ТКП</a></button>
+                  {% endif %}
+                  <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'my_list' %}" class="nav-link">Мои ТКП</a></button>
+                  <button class="btn btn-outline-success me-2" type="button"><a href="{% url 'tkp_add' %}" class="nav-link">+ Добавить новое ТКП</a></button>
+                  {% if user.is_authenticated %}
+                  <button class="btn btn-sm btn-outline-secondary" type="button">Привет {{ user.username }}!</button>
+                  <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url 'logout' %}">Выйти</a></button>
+                  {% else %}
+                  <button class="btn btn-sm btn-outline-secondary" type="button">Вы не вошли</button>
+                  <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url 'login' %}">Войти</a></button>
+                  {% endif %}
+                </form>
+            </div>
+        </div>
+      </nav>
+    </header>
+  <div class="container-fluid">
           {% block content %}
           {% endblock content %}
-
-
-      </div>
-    </div>
-
-
+  </div>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   </body>
 </html>

@@ -10,11 +10,12 @@ class Tkp_new(models.Model):
     title = models.CharField("Организация (Клиент)", max_length=200)
     data_create_tkp = models.DateField("Дата ТКП", default=date.today)
     time_update_tkp = models.DateTimeField(auto_now=True)
-    summa_tkp = models.BigIntegerField("Сумма ТКП", default=0, help_text="указывать сумму в рублях с НДС")
+    summa_tkp = models.DecimalField("Сумма ТКП", max_digits=19, decimal_places=2, default=0, help_text="указывать сумму в рублях с НДС")
     kontakt_tkp = models.CharField("Контактное лицо", max_length=200, help_text="указывать полное имя")
     kontakt_tel = models.BigIntegerField("Телефон контактного лица")
     city_client = models.CharField("Населённый пункт", max_length=200)
     description_tkp = models.CharField("Оборудование, содержание/предложение", max_length=200)
+    tkpdf = models.FileField(upload_to='tkps/%Y-%m-%d/', null=True, blank=True)
     tender_tkp = models.BooleanField("Тендер", default=False)
     notes_tkp = models.CharField("Примечание", max_length=200, blank=True, default='')
     author = models.ForeignKey(

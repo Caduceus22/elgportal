@@ -1,35 +1,61 @@
 {% extends 'base.html' %}
  
 {% block content %}
-<table class="table table-hover">
-  <tr>
-    <th>№ ТКП</th>
-    <th>Менеджер</th>
-    <th>Дата ТКП</th>
-    <th>Организация (Клиент)</th>
-    <th>Сумма ТКП</th>
-    <th>Контактное лицо</th>
-    <th>Телефон конактного лица</th>
-    <th>Населённый пункт</th>
-    <th>Оборудование, предложение</th>
-    <th>Тендер</th>
-    <th>Примечание</th>
-  </tr>
-
+<div class="row">
+  <main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered table-sm border-success">
+        <thead>
+         <tr>
+          <th scope="col">№ ткп</th>
+          <th scope="col">Менеджер</th>
+          <th scope="col">Дата ТКП</th>
+          <th scope="col">Организация (Клиент)</th>
+          <th scope="col">Сумма ТКП</th>
+          <th scope="col">Контактное лицо</th>
+          <th scope="col">Населённый пункт</th>
+          <th scope="col">Оборудование, предложение</th>
+          <th scope="col">Файл ТКП (в формате pdf)</th>
+          <th scope="col">Тендер</th>
+          <th scope="col">Примечание</th>
+         </tr>
+        </thead>
 {% for post in my_list %}
-  <tr class="table table-hover">
-    <td class="table table-hover">{{ post.id }}</td>
-    <td class="table table-hover">{{ post.author }}</td>
-    <td class="table table-hover">{{ post.data_create_tkp|date:"SHORT_DATE_FORMAT" }}</td>
-    <td class="table table-hover">{{ post.title }}</td>
-    <td class="table table-hover">{{ post.summa_tkp }}</td>
-    <td class="table table-hover">{{ post.kontakt_tkp }}</td>
-    <td class="table table-hover">{{ post.kontakt_tel }}</td>
-    <td class="table table-hover">{{ post.city_client }}</td>
-    <td class="table table-hover">{{ post.description_tkp }}</td>
-    <td class="table table-hover">{{ post.tender_tkp|yesno:"тендер,нет" }}</td>
-    <td class="table table-hover">{{ post.notes_tkp }}</td>
-  </tr>
-{% endfor %}
-</table>
+  <tbody>
+            <tr class="table table-hover table-bordered border-success">
+              <td>{{ post.id }}</td>
+              <td>{{ post.author }}</td>
+              <td>{{ post.data_create_tkp|date:"SHORT_DATE_FORMAT" }}</td>
+              <td>{{ post.title }}</td>
+              <td>{{ post.summa_tkp }}</td>
+              <td>{{ post.kontakt_tkp }}</td>
+              <td>{{ post.city_client }}</td>
+              <td>{{ post.description_tkp }}</td>
+              <td><a href="{{ post.tkpdf.url }}">{{ post.tkpdf.name}}</a></td>
+              <td>{{ post.tender_tkp|yesno:"тендер,нет" }}</td>
+              <td>{{ post.notes_tkp }}</td>
+            </tr>
+        </tbody>
+       {% endfor %}
+      </table>
+    </div>
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
+        {% endif %}
+      </span>
+</div>
+  </main>
+</div>
 {% endblock content %}

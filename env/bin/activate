@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/budha/myapps/elgportal/env"
+VIRTUAL_ENV="/home/sys11/draft/3001/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
